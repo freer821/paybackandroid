@@ -24,6 +24,7 @@
         android:layout_height="250dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
+        android:layout_marginBottom="250dp"
         android:contentDescription="@string/empty_description" />
 
     <TextView
@@ -47,6 +48,7 @@
         android:layout_marginBottom="45dp"
         android:background="@color/colorPrimary"
         android:text="@string/view_contact"
+        android:visibility="gone"
         android:textColor="@color/white" />
 
   </RelativeLayout>

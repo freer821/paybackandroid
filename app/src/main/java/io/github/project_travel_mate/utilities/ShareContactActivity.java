@@ -127,13 +127,13 @@ public class ShareContactActivity extends AppCompatActivity implements View.OnCl
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
             BitMatrix bitMatrix = multiFormatWriter.encode(myName + " : " + myEmail,
-                    BarcodeFormat.QR_CODE, BAR_CODE_WIDTH, BAR_CODE_HEIGHT);
+                    BarcodeFormat.QR_CODE, 300, 300);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             //Creating bitmap for generated 2D matrix
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
             //saving the generated qr code in device
             String path = Environment.getExternalStorageDirectory().getPath();
-            File qrCodeFile = new File(path + "/TravelMate/QRCodes");
+            File qrCodeFile = new File(path + "/TravelBao/QRCodes");
             qrCodeFile.mkdir();
             //for providing name to image
             Random generator = new Random();
