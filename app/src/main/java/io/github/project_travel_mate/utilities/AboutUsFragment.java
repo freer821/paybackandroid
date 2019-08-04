@@ -68,6 +68,7 @@ public class AboutUsFragment extends Fragment {
         return view;
     }
 
+    /**
     @OnClick(R.id.cv_fork)
     public void onForkClicked() {
         Intent viewIntent =
@@ -129,6 +130,7 @@ public class AboutUsFragment extends Fragment {
                 new Intent(Intent.ACTION_VIEW, Uri.parse(BUY_ME_A_COFFEE));
         startActivity(viewIntent);
     }
+     */
 
     @Override
     public void onAttach(Context context) {

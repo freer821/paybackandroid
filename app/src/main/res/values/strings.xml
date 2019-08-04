@@ -8,7 +8,7 @@
     <string name="navigation_drawer_utilities">二维码</string>
     <string name="navigation_drawer_destination">合作店家</string>
     <string name="navigation_drawer_travel">Travel</string>
-    <string name="navigation_drawer_about_us">关于我们</string>
+    <string name="navigation_drawer_about_us">联系客服</string>
     <string name="navigation_drawer_signout">退出登录</string>
     <string name="navigation_drawer_my_friends">My Friends</string>
     <string name="navigation_drawer_settings">设置</string>
@@ -167,13 +167,13 @@
     <string name="cities_travelled">Cities visited </string>
 
     <!-- About Us String-->
-    <string name="app_description">A must-have app for those interested in travel. The app provides users with various features from choosing the correct destination to making all the bookings and to easily organizing the trip.</string>
-    <string name="version_code">Version Code :</string>
+    <string name="app_description">旅游宝app说明。。。。。。。。。。。。。。</string>
+    <string name="version_code">版本号 :</string>
     <string name="fork_on_github">Fork on GitHub</string>
-    <string name="view_contributors">View Contributors</string>
-    <string name="report_a_bug">Report a Bug</string>
+    <string name="view_contributors">客户晒单</string>
+    <string name="report_a_bug">投诉建议</string>
     <string name="privacy_policy">Privacy Policy</string>
-    <string name="contact_us">Contact Us</string>
+    <string name="contact_us">联系我们</string>
     <string name="join_slack">Join Slack</string>
     <string name="share_app">Share app</string>
     <string name="website">Website</string>
