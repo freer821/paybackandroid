@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.text.SymbolTable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -27,6 +28,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -199,14 +201,14 @@ public class CityFragment extends Fragment implements TravelmateSnackbars {
     private void fetchCitiesList() {
 
         // to fetch 6 city names
-        String uri = MAIN_API_LINK + "get-all-cities/10";
+        String uri = MAIN_API_LINK + "shop/list";
         Log.v("EXECUTING", uri);
 
         //Set up client
         OkHttpClient client = new OkHttpClient();
         //Execute request
         final Request request = new Request.Builder()
-                .header("Authorization", "Token " + mToken)
+                .header("Authorization", "Bearer " + mToken)
                 .url(uri)
                 .build();
         //Setup callback
@@ -225,15 +227,16 @@ public class CityFragment extends Fragment implements TravelmateSnackbars {
                             String res = response.body().string();
                             Log.v("RESULT", res);
                             animationView.setVisibility(View.GONE);
-                            JSONArray ar = new JSONArray(res);
+                            JSONObject resObject = new JSONObject(res);
+                            JSONArray ar = resObject.getJSONArray("msg");
                             FlipSettings settings = new FlipSettings.Builder().defaultPage().build();
                             List<City> cities = new ArrayList<>();
                             for (int i = 0; i < ar.length(); i++) {
                                 cities.add(new City(
                                         ar.getJSONObject(i).getString("id"),
-                                        ar.getJSONObject(i).optString("image"),
-                                        ar.getJSONObject(i).getString("city_name"),
-                                        ar.getJSONObject(i).getInt("facts_count"),
+                                        "https://media.timeout.com/images/105404217/750/422/image.jpg",
+                                        ar.getJSONObject(i).getString("shop_name"),
+                                        1,
                                         mColors[i],
                                         mActivity.getApplicationContext().getString(R.string.interest_know_more),
                                         mActivity.getApplicationContext().getString(R.string.interest_weather),
@@ -241,6 +244,8 @@ public class CityFragment extends Fragment implements TravelmateSnackbars {
                                         mActivity.getApplicationContext().getString(R.string.interest_trends)));
 
                             }
+
+                            System.out.println("cities size: " + cities.size());
 
                             lv.setAdapter(new CityAdapter(mActivity, cities, settings));
                             lv.setOnItemClickListener((parent, view, position, id1) -> {

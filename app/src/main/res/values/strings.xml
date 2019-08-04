@@ -40,7 +40,7 @@
     <string name="search_title">Cities</string>
 
     <!-- Destinations home page strings -->
-    <string name="popular_cities">Most Popular Cities</string>
+    <string name="popular_cities">热门合作商家</string>
 
     <!-- Map strings -->
     <string name="title">Select items to display in map</string>

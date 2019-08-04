@@ -36,7 +36,7 @@ class CityAdapter extends BaseFlipAdapter<City> {
     }
 
     @Override
-    public View getPage(int position, View convertView, ViewGroup parent, final City city1, final City city2) {
+    public View getPage(int position, View convertView, ViewGroup parent, final City city1) {
         CitiesHolder holder;
         CitiesInfoHolder infoHolder;
         if (convertView == null) {
@@ -51,6 +51,7 @@ class CityAdapter extends BaseFlipAdapter<City> {
         } else {
             holder = (CitiesHolder) convertView.getTag();
         }
+
         infoHolder = new CitiesInfoHolder(holder.infoPage);
 
         switch (position) {
@@ -60,17 +61,9 @@ class CityAdapter extends BaseFlipAdapter<City> {
                         placeholder(R.drawable.placeholder_image).
                         into(holder.leftAvatar);
                 holder.left.setText(city1.getNickname());
-
-                if (city2 != null) {
-                    holder.right.setText(city2.getNickname());
-                    Picasso.with(mContext).
-                            load(city2.getAvatar()).
-                            placeholder(R.drawable.placeholder_image).
-                            into(holder.rightAvatar);
-                }
                 break;
             default:
-                fillHolder(holder, infoHolder, position == 0 ? city1 : city2);
+                fillHolder(holder, infoHolder,  city1);
                 holder.infoPage.setTag(holder);
                 return holder.infoPage;
         }
@@ -126,12 +119,8 @@ class CityAdapter extends BaseFlipAdapter<City> {
         final List<TextView> interests = new ArrayList<>();
         @BindView(R.id.first)
         ImageView leftAvatar;
-        @BindView(R.id.second)
-        ImageView rightAvatar;
         @BindView(R.id.name1)
         TextView left;
-        @BindView(R.id.name2)
-        TextView right;
         View infoPage;
 
         CitiesHolder(View view) {

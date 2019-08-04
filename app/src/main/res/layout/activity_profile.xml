@@ -205,7 +205,7 @@
             <TextView
                 android:id="@+id/display_joining_date"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
+                android:layout_height="55dp"
                 android:layout_alignStart="@+id/date_joined_icon"
                 android:layout_below="@+id/display_email"
                 android:layout_centerHorizontal="true"
@@ -224,7 +224,7 @@
                 android:layout_alignStart="@+id/status_icon"
                 android:layout_below="@+id/display_joining_date"
                 android:paddingTop="8sp"
-                android:text="Shops visited"
+                android:text="Shops visited(待开发中)"
                 android:textColor="#333434"
                 android:textSize="18sp" />
 

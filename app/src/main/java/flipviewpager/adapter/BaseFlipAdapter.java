@@ -30,7 +30,9 @@ public abstract class BaseFlipAdapter<T> extends BaseAdapter {
     @Override
     public int getCount() {
         // Checking if we need an additional row for single item
-        return mItems.size() % 2 != 0 ? ((mItems.size() / 2) + 1) : (mItems.size() / 2);
+        //return mItems.size() % 2 != 0 ? ((mItems.size() / 2) + 1) : (mItems.size() / 2);
+        return mItems.size();
+
     }
 
     @Override
@@ -46,9 +48,9 @@ public abstract class BaseFlipAdapter<T> extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         // Trick to divide list into 2 parts
-        T item1 = getItem(position * 2);
+        T item1 = getItem(position);
         // Used for cases when we have not an even size in incoming list
-        T item2 = mItems.size() > (position * 2 + 1) ? getItem(position * 2 + 1) : null;
+        //T item2 = mItems.size() > (position * 2 + 1) ? getItem(position * 2 + 1) : null;
 
         final ViewHolder viewHolder;
         if (convertView == null)
@@ -66,20 +68,20 @@ public abstract class BaseFlipAdapter<T> extends BaseAdapter {
 
         if (viewHolder.mFlipViewPager.getAdapter() == null) {
             viewHolder.mFlipViewPager.setAdapter(
-                    new MergeAdapter(item1, item2), mSettings.getDefaultPage(), position, mItems.size());
+                    new MergeAdapter(item1), mSettings.getDefaultPage(), position, mItems.size());
         } else {
             // Recycling internal adapter
             // So, it's double recycling - we have only 4-5 mFlipViewPager objects
             // and each of them have an adapter
             MergeAdapter adapter = (MergeAdapter) viewHolder.mFlipViewPager.getAdapter();
-            adapter.updateData(item1, item2);
+            adapter.updateData(item1);
             viewHolder.mFlipViewPager.setAdapter(adapter,
                     mSettings.getPageForPosition(position), position, mItems.size());
         }
         return convertView;
     }
 
-    protected abstract View getPage(int position, View convertView, ViewGroup parent, T item1, T item2);
+    protected abstract View getPage(int position, View convertView, ViewGroup parent, T item1);
 
     protected abstract int getPagesCount();
 
@@ -90,21 +92,18 @@ public abstract class BaseFlipAdapter<T> extends BaseAdapter {
     // Adapter merges 2 mItems together
     private class MergeAdapter extends BaseAdapter {
         private T mItem1;
-        private T mItem2;
 
-        MergeAdapter(T item1, T item2) {
+        MergeAdapter(T item1) {
             this.mItem1 = item1;
-            this.mItem2 = item2;
         }
 
-        void updateData(T item1, T item2) {
+        void updateData(T item1) {
             this.mItem1 = item1;
-            this.mItem2 = item2;
         }
 
         @Override
         public int getCount() {
-            return mItem2 == null ? getPagesCount() - 1 : getPagesCount();
+            return getPagesCount();
         }
 
         @Override
@@ -119,7 +118,7 @@ public abstract class BaseFlipAdapter<T> extends BaseAdapter {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            return getPage(position, convertView, parent, mItem1, mItem2);
+            return getPage(position, convertView, parent, mItem1);
         }
     }
 }

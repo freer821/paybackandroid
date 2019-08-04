@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = MyFriendsFragment.newInstance();
                 break;
              */
-            case R.id.nav_city:
+            case R.id.nav_utility:
                 fragment = CityFragment.newInstance();
                 break;
 
@@ -328,8 +328,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         int id = object.getInt("id");
                         String imageURL = "no_image";
                         String dateJoined = object.getString("created_on");
-                        Long dateTime = rfc3339ToMills(dateJoined);
-                        String date = getDate(dateTime);
 
                         mSharedPreferences.edit().putString(USER_FULL_NAME, userFullName).apply();
                         mSharedPreferences.edit().putString(USER_TEL, userTel).apply();
@@ -337,7 +335,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         mSharedPreferences.edit().putString(USER_PASSPORT, userPassport).apply();
                         mSharedPreferences.edit().putString(USER_ROLE, userRole).apply();
                         mSharedPreferences.edit().putString(USER_NO, userNo).apply();
-                        mSharedPreferences.edit().putString(USER_DATE_JOINED, date).apply();
+                        mSharedPreferences.edit().putString(USER_DATE_JOINED, dateJoined).apply();
                         mSharedPreferences.edit().putString(USER_IMAGE, imageURL).apply();
                         mSharedPreferences.edit().putString(USER_ID, String.valueOf(id)).apply();
                         fillNavigationView(userFullName, imageURL);
@@ -380,7 +378,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.notification_menu, menu);
-        updateNotificationsCount(menu);
+        //updateNotificationsCount(menu);
         return true;
     }
 
