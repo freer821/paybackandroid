@@ -27,7 +27,7 @@ public class Constants {
     public static final String EVENT_NAME = "event_img";
     public static final String IMAGE_NO = "number";
 
-    public static final String MAIN_API_LINK = "http://10.0.2.2:5000/api/v1/";
+    public static final String MAIN_API_LINK = "http://167.179.71.172:5000/api/v1/";
 
     // TODO:: replace placeholders with actual values
     //Cloudinary information
