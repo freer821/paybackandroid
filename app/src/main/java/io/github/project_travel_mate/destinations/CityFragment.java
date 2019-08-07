@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.icu.text.SymbolTable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -39,7 +38,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import flipviewpager.utils.FlipSettings;
 import io.github.project_travel_mate.R;
-import io.github.project_travel_mate.destinations.description.FinalCityInfoActivity;
+import io.github.project_travel_mate.destinations.description.FinalShopInfoActivity;
 import objects.City;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -48,6 +47,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import utils.TravelmateSnackbars;
 
+import static utils.Constants.EXTRA_MESSAGE_CITY_OBJECT;
 import static utils.Constants.MAIN_API_LINK;
 import static utils.Constants.USER_TOKEN;
 
@@ -180,7 +180,8 @@ public class CityFragment extends Fragment implements TravelmateSnackbars {
                         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         mMaterialSearchView.setAdapter(dataAdapter);
                         mMaterialSearchView.setOnItemClickListener((arg0, arg1, arg2, arg3) -> {
-                            Intent intent = FinalCityInfoActivity.getStartIntent(mActivity, cities.get(arg2));
+                            Intent intent = new Intent(getContext(), FinalShopInfoActivity.class);
+                            intent.putExtra(EXTRA_MESSAGE_CITY_OBJECT, cities.get(arg2));
                             startActivity(intent);
                         });
                     } catch (JSONException e) {
@@ -238,19 +239,17 @@ public class CityFragment extends Fragment implements TravelmateSnackbars {
                                         ar.getJSONObject(i).getString("shop_name"),
                                         1,
                                         mColors[i],
-                                        mActivity.getApplicationContext().getString(R.string.interest_know_more),
-                                        mActivity.getApplicationContext().getString(R.string.interest_weather),
-                                        mActivity.getApplicationContext().getString(R.string.interest_fun_facts),
-                                        mActivity.getApplicationContext().getString(R.string.interest_trends)));
+                                        ar.getJSONObject(i).getString("address"),
+                                        ar.getJSONObject(i).getString("description"),
+                                        ar.getJSONObject(i).getString("tel")));
 
                             }
-
-                            System.out.println("cities size: " + cities.size());
 
                             lv.setAdapter(new CityAdapter(mActivity, cities, settings));
                             lv.setOnItemClickListener((parent, view, position, id1) -> {
                                 City city = (City) lv.getAdapter().getItem(position);
-                                Intent intent = FinalCityInfoActivity.getStartIntent(mActivity, city);
+                                Intent intent = new Intent(getContext(), FinalShopInfoActivity.class);
+                                intent.putExtra(EXTRA_MESSAGE_CITY_OBJECT, city);
                                 startActivity(intent);
                             });
 

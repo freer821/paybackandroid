@@ -8,7 +8,7 @@
     <string name="navigation_drawer_utilities">二维码</string>
     <string name="navigation_drawer_destination">合作店家</string>
     <string name="navigation_drawer_travel">Travel</string>
-    <string name="navigation_drawer_about_us">联系客服</string>
+    <string name="navigation_drawer_about_us">关于我们</string>
     <string name="navigation_drawer_signout">退出登录</string>
     <string name="navigation_drawer_my_friends">My Friends</string>
     <string name="navigation_drawer_settings">设置</string>

@@ -108,6 +108,7 @@
             android:label="@string/title_activity_login"
             android:theme="@style/AppThemeNoBar" />
         <activity android:name=".destinations.description.FinalCityInfoActivity" />
+        <activity android:name=".destinations.description.FinalShopInfoActivity" />
         <activity android:name=".destinations.description.PlacesOnMapActivity" />
         <activity android:name=".mytrips.AddNewTripActivity" />
         <activity
